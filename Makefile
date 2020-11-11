@@ -26,3 +26,6 @@ report:
 
 superuser:
 	./manage.py createsuperuser --username $(name)
+
+push:
+	git push -u origin $(branch)
