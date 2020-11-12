@@ -6,3 +6,8 @@ class taskSerializer(serializers.ModelSerializer):
         model = task
         exclude = ['status']
 
+class task_statusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = task
+        fields = ['status']
+

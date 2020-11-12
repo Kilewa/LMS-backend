@@ -3,7 +3,7 @@ from .models import task
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import taskSerializer
+from .serializers import taskSerializer, task_statusSerializer
 
 
 # Create your views here.
@@ -29,6 +29,16 @@ def single_task(request, id):
 @api_view(['POST'])
 def create_task(request):
     serializer = taskSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def update_task_status(request, id):
+    tasks = task.objects.get(id = id)
+    serializer = task_statusSerializer(instance=tasks, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
