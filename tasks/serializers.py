@@ -4,7 +4,7 @@ from .models import task
 class taskSerializer(serializers.ModelSerializer):
     class Meta:
         model = task
-        exclude = ['status']
+        fields = '__all__'
 
 class task_statusSerializer(serializers.ModelSerializer):
     class Meta:

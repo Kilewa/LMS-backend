@@ -8,9 +8,6 @@ from .serializers import taskSerializer, task_statusSerializer
 
 # Create your views here.
 
-
-
-
 @api_view(['GET'])
 def all_tasks(request):
     tasks = task.objects.all()
