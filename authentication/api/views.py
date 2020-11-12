@@ -1,14 +1,27 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from authentication.models import Users
-from authentication.api.serializers import RegistrationSerializer
+from authentication.api.serializers import UserSerializer
+
+""" 
+class CreateUser(APIView):
+      def post(self, request):
+          user = request.data
+          serializer = UserSerializer(data=user)
+
+          if serializer.is_valid():
+              serializer.save()
+              return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+          return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) """
 
 
 @api_view(['POST',])
-def registration_view(request):
+def CreateUser(request):
     if request.method == 'POST':
-        serializer = RegistrationSerializer(data=request.data)
+        serializer = UserSerializer(data=request.data)
         data = {}
         if serializer.is_valid():
                 authentication = serializer.save()
