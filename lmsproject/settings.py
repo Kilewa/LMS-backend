@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     
     'authentication',
     'core',
+    'tasks',
 
 
     #Third-party Apps

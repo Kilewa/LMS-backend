@@ -19,14 +19,14 @@ class UserManager(BaseUserManager):
         return user
 
     def create_dept_head(self, username,email,password=None):
-        user = self.create_dept_head(username,email,password)
+        user = self.create_staff(username,email,password)
         user.is_dep_head = True
         user.is_staff = True
         user.save()
         return user
 
     def create_superuser(self, username,email,password=None):
-        user = self.create_superuser(username=username ,email=self.normalize_email(email), password=password)
+        user = self.create_staff(username=username ,email=self.normalize_email(email), password=password)
         user.is_superuser = True
         user.is_admin = True
         user.is_staff = True
