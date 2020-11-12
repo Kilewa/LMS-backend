@@ -1,5 +1,7 @@
 start.sh
 .gitignore
+venv/
+.env
 
 ### Flask ###
 instance/*

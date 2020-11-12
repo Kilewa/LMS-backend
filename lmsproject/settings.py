@@ -28,8 +28,8 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
-
-# Application definition
+AUTH_USER_MODEL = 'authentication.Users'
+# # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Local Apps
-    'users',
+    
+    'authentication',
     'core',
+
 
     #Third-party Apps
     'rest_framework',
@@ -81,6 +83,16 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
+REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'drf_jwt.authentication.JSONWebTokenAuthentication',
+    ]
+}
+
 
 WSGI_APPLICATION = 'lmsproject.wsgi.application'
 
@@ -136,9 +148,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 REGISTRATION_OPEN = True
 
 """ LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = '/' """
+
+
