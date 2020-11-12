@@ -26,6 +26,15 @@ def single_task(request, id):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+def create_task(request):
+    serializer = taskSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
 
 
 
