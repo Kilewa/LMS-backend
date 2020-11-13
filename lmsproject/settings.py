@@ -29,7 +29,7 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
-AUTH_USER_MODEL = 'authentication.Users'
+AUTH_USER_MODEL = 'authentication.User'
 # # Application definition
 
 INSTALLED_APPS = [
