@@ -4,6 +4,8 @@ from django.contrib.auth.models import (
     AbstractUser
 )
 
+class Role(models.Model):
+    '''
 class User(AbstractUser):
     USER_ROLES = (
         (1, 'DEPARTMENT HEAD'),
