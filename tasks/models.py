@@ -8,4 +8,4 @@ class task(models.Model):
     assigned_on = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField()
     assigned_to = models.ForeignKey(Users, on_delete=models.CASCADE)
-    status = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False)

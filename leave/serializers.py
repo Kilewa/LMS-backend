@@ -4,10 +4,10 @@ from .models import leave
 class leaveSerializer(serializers.ModelSerializer):
     class Meta:
         model = leave
-        exclude = ['comments','status']
+        fields = '__all__'
 
 class approve_leaveSerializer(serializers.ModelSerializer):
     class Meta:
         model = leave
-        fields = ['status', 'comments']
+        fields = ['status']
 
