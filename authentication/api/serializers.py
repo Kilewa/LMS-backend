@@ -1,30 +1,19 @@
 from rest_framework import serializers
-from authentication.models import Users
+from authentication.models import User
+from django.contrib.auth import get_user_model
 
-""" class UserSerializer(serializers.ModelSerializer):
-
-    class Meta(object):
-        model = Users
-        fields = ['email','username']
-
-    def save(self):
-        authentication = Users(
-            email=self.validated_data['email'],
-            username=self.validated_data['username'],
-        )
-        authentication.save()
-        return authentication """
+User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
     '''
     creating registration serializer
     '''
     class Meta:
-        model = Users
-        fields = ['email','username']
+        model = User
+        fields = ['email','username','role']
         
     def save(self):
-        authentication = Users(
+        authentication = User(
             email=self.validated_data['email'],
             username=self.validated_data['username'],
         )
