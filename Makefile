@@ -29,3 +29,6 @@ superuser:
 
 push:
 	git push -u origin $(branch)
+
+pull:
+	git pull origin $(branch)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from authentication.models import Users
+from authentication.models import User
 from profiles.models import Profile
 
 
