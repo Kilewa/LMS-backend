@@ -1,7 +1,8 @@
 from django.db import models
-from authentication.models import Users
+from django.conf import settings
 
 class Department(models.Model):
+
     """Department model class."""
     code = models.CharField(max_length=4, primary_key=True)
     name = models.CharField(max_length=30, blank=False, unique=True)
@@ -44,3 +45,4 @@ class Employee(models.Model):
 
     class Meta:
         ordering = ('first_name',)
+

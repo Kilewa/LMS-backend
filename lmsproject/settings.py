@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 import cloudinary
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +29,7 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
-AUTH_USER_MODEL = 'authentication.Users'
+AUTH_USER_MODEL = 'authentication.User'
 # # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
 
     #Local Apps
     'authentication',
+
+
     'profiles',
     'departments',
     
@@ -95,6 +98,11 @@ REST_FRAMEWORK = {
 
 WSGI_APPLICATION = 'lmsproject.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -155,9 +163,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -173,4 +178,10 @@ REGISTRATION_OPEN = True
 """ LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = '/' """
 
-
+# Email configurations remember to install python-decouple
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

@@ -2,8 +2,7 @@ from rest_framework import generics, permissions
 from rest_framework.response import Response
 from .serializers import ProfileSerializer
 from profiles.models import Profile
-from authentication.models import Users
-
+from authentication.models import User
 
 class ProfileApi(generics.ListAPIView):
     
