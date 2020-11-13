@@ -3,6 +3,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 from departments.api.views import DepartmentListView, EmployeeCreateView, EmployeeDeleteView
 
+app_name = 'departments'
+
 urlpatterns = {
     url(r'^department/$', DepartmentListView.as_view(), name='list'),
     url(r'^employee/$', EmployeeCreateView.as_view(), name='add'),

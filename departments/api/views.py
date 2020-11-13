@@ -4,8 +4,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 
 
-from api.models import Department, Employee
-from api.serializers import DepartmentSerializer, EmployeeSerializer
+from departments.models import Department, Employee
+from .serializers import DepartmentSerializer, EmployeeSerializer
 
 
 class DepartmentListView(generics.ListAPIView):
