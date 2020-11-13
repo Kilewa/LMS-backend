@@ -1,8 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-class Department(models.Model):
-<<<<<<< HEAD
     """Department model class."""
     code = models.CharField(max_length=4, primary_key=True)
     name = models.CharField(max_length=30, blank=False, unique=True)
@@ -38,17 +36,11 @@ class Employee(models.Model):
     
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.first_name)
 
     def __unicode__(self):
-        return self.name
+        return self.first_name
 
     class Meta:
         ordering = ('first_name',)
-=======
-    pass
 
-
-class Employee(models.Model):
-    pass
->>>>>>> e1767ec298959b2b3037a97c53e0eab5a25cb591
