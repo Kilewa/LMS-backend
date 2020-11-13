@@ -13,7 +13,7 @@ class CreateUser(APIView):
 
           if serializer.is_valid():
 
-              serializer.save()
+              user = serializer.save()
               response="successfully registered new user"
               email =user.email
               username =user.username
