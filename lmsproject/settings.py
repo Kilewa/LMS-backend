@@ -40,11 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Local Apps
-    
     'authentication',
-    'core',
-
-
+    'profiles',
+    'departments',
+    
     #Third-party Apps
     'rest_framework',
     'cloudinary',
