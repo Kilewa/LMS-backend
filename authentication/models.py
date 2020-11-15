@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import (
     BaseUserManager,AbstractBaseUser,PermissionsMixin
 )
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class UserManager(BaseUserManager):
 
@@ -70,7 +71,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
     
     def tokens(self):
-        pass
+        refresh=RefreshToken.for_user(self)
+        return{
+            'refresh':str(refresh),
+            'access':str(refresh.access_token)
+        }
 
     class Meta:
         verbose_name = 'User'

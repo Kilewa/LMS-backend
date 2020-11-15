@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .utils import Util
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
-from authentication.api.serializers import RegisterSerializer
+from authentication.api.serializers import RegisterSerializer, LoginSerializer
 import jwt
 from django.conf import settings
 from .permissions import IsDepartmentHead, IsEmployee
@@ -39,7 +39,7 @@ class CreateUser(generics.GenericAPIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class VerifyAccount(generics.GenericAPIView):
+class VerifyAccount(APIView):
     def get(self,request):
         token = request.GET.get('token')
         try:
@@ -53,3 +53,11 @@ class VerifyAccount(generics.GenericAPIView):
             return Response({'error':'Activation Link Expired'},status=status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError as identifier:
             return Response({'error':'Invalid Token'},status=status.HTTP_400_BAD_REQUEST)
+
+class LoginAPIView(APIView):
+    serializer_class = LoginSerializer
+    def post(self,request):
+        serializer=self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)

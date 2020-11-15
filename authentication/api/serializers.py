@@ -1,12 +1,14 @@
 from rest_framework import serializers
 from authentication.models import User
 from django.contrib.auth import get_user_model
+from django.contrib import auth
+from rest_framework.exceptions import AuthenticationFailed
 
 User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     '''
-    creating registration serializer
+    registration serializer
     '''
     password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)
     class Meta:
@@ -29,20 +31,34 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-    """ def validate(self, attrs):
-        user = User (
-        email = attrs.get('email', ''),
-        username = attrs.get('username', '')
-        )
-        password=attrs.get('password', '')
-        password2=attrs.get('password2', '')
+class LoginSerializer(serializers.ModelSerializer):
+    '''
+    Login Serializer
+    '''
+    email = serializers.EmailField(max_length=255)
+    password = serializers.CharField(max_length=70, min_length=5, write_only=True)
+    username = serializers.CharField(max_length=255, read_only=True)
+    tokens = serializers.CharField(max_length=255, read_only=True)
 
-        if password != password2:
-            raise serializers.ValidationError({'password':'Passwords must match.'})
+    class Meta:
+        model = User
+        fields=['email','password','username','tokens']
 
-        user.set_password(password)
-        user.save
-        return attrs
+    def validate(self, attrs):
+        email = attrs.get('email', '')
+        password = attrs.get('password', '')
 
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data) """
+        user = auth.authenticate(email=email, password=password)
+
+        if not user:
+            raise AuthenticationFailed('Account Does Not Exist')
+        if not user.is_active:
+            raise AuthenticationFailed('Account Disabled, Contact Admin')
+        if not user.is_verified:
+            raise AuthenticationFailed('Email Not Verified')
+        return {
+            'email':user.email,
+            'username': user.username,
+            'tokens': user.tokens()
+        }
+        return super().validate(attrs)
