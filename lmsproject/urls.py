@@ -30,3 +30,6 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
+
+admin.site.site_header = 'Human Resource Administrator'
+admin.site.index_title ='Manage The HRM'
