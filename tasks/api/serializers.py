@@ -9,5 +9,5 @@ class taskSerializer(serializers.ModelSerializer):
 class task_statusSerializer(serializers.ModelSerializer):
     class Meta:
         model = task
-        fields = ['status']
+        fields = ['completed']
 

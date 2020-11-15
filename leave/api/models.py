@@ -6,17 +6,17 @@ import datetime
 
 class leave(models.Model):
     choices = (
-        ("1", "Pending"),
-        ("2", "Approved"),
-        ("3", "Denied")
+        ("Pending","Pending"),
+        ("Approved", "Approved"),
+        ("Denied", "Denied")
     )
 
     Employee = models.ForeignKey(Users, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     reasons = models.TextField()
-    status = models.CharField(max_length=1, choices= choices)
-
+    status = models.CharField(max_length=10, choices= choices, default="Pending")
+    comments = models.TextField(default='under review')
 
 
 

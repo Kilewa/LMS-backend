@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import leave
+from .api.models import leave
 
 # Register your models here.
 
