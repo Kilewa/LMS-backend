@@ -4,9 +4,7 @@ from django.contrib.auth import authenticate
 
 from authentication.models import User
 
-class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Add a valid email address.')
-
+class UserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('email', 'username','password','password2',)
+        fields = "__all__"
