@@ -26,14 +26,11 @@ urlpatterns = [
     path('api/profiles/', include('profiles.api.urls','profile')),
     path('api/departments/', include('departments.api.urls','department')),
     path('api-auth/', include('rest_framework.urls')),
-<<<<<<< HEAD
 
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-=======
     path('tasks/', include('tasks.api.urls')),
     path('leaves/', include('leave.api.urls')),
->>>>>>> 115ffc28d0e6d59c3d8830e2da09569999f3a2e4
 ]
 
 admin.site.site_header = 'Human Resource Administrator'

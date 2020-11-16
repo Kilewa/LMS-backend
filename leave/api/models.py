@@ -1,5 +1,5 @@
 from django.db import models
-from authentication.models import Users
+from django.conf import settings
 import datetime
 
 # Create your models here.
@@ -11,7 +11,7 @@ class leave(models.Model):
         ("Denied", "Denied")
     )
 
-    Employee = models.ForeignKey(Users, on_delete=models.CASCADE)
+    Employee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     reasons = models.TextField()
