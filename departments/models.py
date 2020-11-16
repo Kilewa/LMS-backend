@@ -30,7 +30,6 @@ class Employee(models.Model):
     is_active = models.BooleanField(default=True)
     basic_pay = models.IntegerField(blank=False, default=0)
     department = models.ForeignKey(Department, related_name='employees', on_delete=models.CASCADE)
-    dept_head = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='employees', on_delete=models.CASCADE)
     city = models.CharField(blank=False, max_length=100)
     county = models.CharField(blank=False, max_length=100)
     nationality = models.CharField(blank=False, max_length=100)
