@@ -12,3 +12,4 @@ class Profile(models.Model):
     profile_photo = CloudinaryField('image')
     user_email = models.EmailField(max_length=255,blank=True)
     create_at = models.DateTimeField(auto_now_add=True)
+    
