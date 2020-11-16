@@ -5,27 +5,7 @@ from django.contrib.auth.models import (
 )
 from rest_framework_simplejwt.tokens import RefreshToken
 
-<<<<<<< HEAD
-
-
-class Role(models.Model):
-    '''
-    The Role entries are managed by the system,
-    automatically created via a Django data migration.
-    '''
-    EMPLOYEE = 1
-    DEPT_HEAD = 2
-    ADMIN = 3
-    ROLE_CHOICES = (
-        (EMPLOYEE, 'Employee'),
-        (DEPT_HEAD, 'Dept_head'),
-        (ADMIN, 'Admin')
-    )
-
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, primary_key=True)
-=======
 class UserManager(BaseUserManager):
->>>>>>> 7676554a595c53ae9745e2b9c5c4c20ad005d266
 
     def create_user(self, username, email, password=None):
         if username is None:
