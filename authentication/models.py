@@ -22,6 +22,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+<<<<<<< HEAD
     def create_employee(self, email,username,password=None):
         """
         Creates and saves a staff user with the given email and password.
@@ -31,9 +32,23 @@ class UserManager(BaseUserManager):
             password=password,
             username=username,
         )
+=======
+    def create_dept_head(self, username,email,password=None):
+        user = self.create_staff(username,email,password)
+        user.is_dep_head = True
+>>>>>>> 115ffc28d0e6d59c3d8830e2da09569999f3a2e4
         user.is_staff = True
         user.save(using=self._db)
 
+<<<<<<< HEAD
+=======
+    def create_superuser(self, username,email,password=None):
+        user = self.create_staff(username=username ,email=self.normalize_email(email), password=password)
+        user.is_superuser = True
+        user.is_admin = True
+        user.is_staff = True
+        user.save()
+>>>>>>> 115ffc28d0e6d59c3d8830e2da09569999f3a2e4
         return user
 
     def create_superuser(self, username, email, password=None):

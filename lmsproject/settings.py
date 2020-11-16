@@ -42,6 +42,12 @@ INSTALLED_APPS = [
 
     #Local Apps
     'authentication',
+<<<<<<< HEAD
+=======
+    'core',
+    'tasks',
+    'leave',
+>>>>>>> 115ffc28d0e6d59c3d8830e2da09569999f3a2e4
 
 
     'profiles',
