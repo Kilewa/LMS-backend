@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .welcome{
+            font-size: 16px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        button{
+            background-color: #001233;
+            color: #fff;
+            padding: 15px;
+            width: 20%;
+            font-size: 16px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+        }
+        button:hover{
+            background-color: #062764;
+        }
+        h2{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        a:hover{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Welcome to Cavaliers Human Resource Management System!</h2>
+    <p class="welcome">Hello {{user.username}},Thank you for registering with Cavaliers HRM. Please click the button below to verify and activate your account.</p>
+    <a href="{{e_body}}"><button>Activate Account</button></a>
+</body>
+</html>

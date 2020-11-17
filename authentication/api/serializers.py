@@ -15,7 +15,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)
     class Meta:
         model = User
-        fields = ['email','username', 'password','password2']
+        fields = ['email','username', 'is_staff', 'is_dept_head','password','password2']
         extra_kwargs = {
             'password': {'write_only':True}
         }
@@ -23,6 +23,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User(
             email=self.validated_data['email'],
             username=self.validated_data['username'],
+            is_staff=self.validated_data['is_staff'],
+            is_dept_head=self.validated_data['is_dept_head'],
         )
         password=self.validated_data['password']
         password2=self.validated_data['password2']
@@ -40,11 +42,14 @@ class LoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255)
     password = serializers.CharField(max_length=70, min_length=5, write_only=True)
     username = serializers.CharField(max_length=255, read_only=True)
+    is_staff = serializers.BooleanField(read_only=True)
+    is_dept_head = serializers.BooleanField(read_only=True)
     tokens = serializers.CharField(max_length=255, read_only=True)
+
 
     class Meta:
         model = User
-        fields=['email','password','username','tokens']
+        fields=['email','is_staff', 'is_dept_head','password','username','tokens']
 
     def validate(self, attrs):
         email = attrs.get('email', '')
@@ -61,6 +66,9 @@ class LoginSerializer(serializers.ModelSerializer):
         return {
             'email':user.email,
             'username': user.username,
+            'is_staff': user.is_staff,
+            'is_dept_head': user.is_dept_head,
             'tokens': user.tokens()
+        
         }
-        return super().validate(attrs)
+        # return super().validate(attrs)

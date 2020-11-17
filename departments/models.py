@@ -33,7 +33,7 @@ class Employee(User, models.Model):
     nationality = models.CharField(blank=False, max_length=100)
     country_of_residence = models.CharField(blank=False, max_length=100)
     postal_address = models.IntegerField(blank=False)
-
+    
 
     
 
