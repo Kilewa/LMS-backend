@@ -5,37 +5,12 @@ from authentication.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
-from authentication.api.serializers import RegisterSerializer, LoginSerializer
+from authentication.api.serializers import LoginSerializer
 import jwt
 from django.conf import settings
 from .permissions import IsDepartmentHead, IsEmployee
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from .send_email import send_mail
-
-class CreateUser(generics.GenericAPIView):
-    serializer_class = RegisterSerializer
-
-    def post(self, request):
-        serializer = self.serializer_class(data=request.data)
-
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            user_data = serializer.data
-            user = User.objects.get(email=user_data['email'])
-        
-            token=RefreshToken.for_user(user).access_token
-
-            current_site = get_current_site(request).domain
-
-            relativeLink = reverse('verifyaccount')
-
-            absurl='http://'+current_site+relativeLink+"?token="+str(token)
-
-            send_mail(user, absurl)
-
-            return Response(user_data,status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class VerifyAccount(APIView):
     def get(self,request):
