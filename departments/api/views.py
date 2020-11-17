@@ -8,7 +8,7 @@ from authentication.api.send_email import send_mail
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
-from authentication.api.serializers import RegisterSerializer, LoginSerializer
+from authentication.api.serializers import LoginSerializer
 import jwt
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated, IsAdminUser

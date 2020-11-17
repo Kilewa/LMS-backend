@@ -35,6 +35,10 @@ class LoginSerializer(serializers.ModelSerializer):
             raise AuthenticationFailed('Account Disabled, Contact Admin')
         if not user.is_verified:
             raise AuthenticationFailed('Email Not Verified')
+
+        if user is not None:
+            if user.is_active and user.is_staff:
+                return 
         return {
             'email':user.email,
             'username': user.username,
