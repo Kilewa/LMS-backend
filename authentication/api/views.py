@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from authentication.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
-from .utils import Util
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from authentication.api.serializers import RegisterSerializer, LoginSerializer
@@ -11,6 +10,7 @@ import jwt
 from django.conf import settings
 from .permissions import IsDepartmentHead, IsEmployee
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from .send_email import send_mail
 
 class CreateUser(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -22,7 +22,7 @@ class CreateUser(generics.GenericAPIView):
             serializer.save()
             user_data = serializer.data
             user = User.objects.get(email=user_data['email'])
-
+        
             token=RefreshToken.for_user(user).access_token
 
             current_site = get_current_site(request).domain
@@ -30,10 +30,8 @@ class CreateUser(generics.GenericAPIView):
             relativeLink = reverse('verifyaccount')
 
             absurl='http://'+current_site+relativeLink+"?token="+str(token)
-            email_body = 'Hi '+user.username+' use link below to verify your email: \n'+ absurl
-            data={'email_body':email_body,'to_user':user.email, 'email_subject': 'Account Activation'}
 
-            Util.send_email(data)
+            send_mail(user, absurl)
 
             return Response(user_data,status=status.HTTP_201_CREATED)
 
