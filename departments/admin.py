@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Department, Employee
-
+from profiles.models import Profile
+from departments.models import Employee, Department
 
 
 admin.site.register(Department)

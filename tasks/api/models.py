@@ -9,3 +9,8 @@ class task(models.Model):
     deadline = models.DateTimeField()
     assigned_to = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return '{}'.format(self.name)
+
