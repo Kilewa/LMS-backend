@@ -4,12 +4,14 @@ from django.contrib.auth import get_user_model
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 
+
 User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     '''
     registration serializer
     '''
+    
     password2 = serializers.CharField(style={'input_type':'password'}, write_only=True)
     class Meta:
         model = User
