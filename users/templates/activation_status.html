@@ -58,11 +58,11 @@
           <p>{{ message }}</p>
           {%if success%}
           {%ifequal user.role 2%}
-          <a href="{{domain}}/Departmenthead/login">
+          <a href="{{domain}}/departmenthead/login">
             <button type="button" class="btn btn-lg btn-white">LOGIN</button>
           </a>
           {%else%}
-          <a href="{{domain}}/Employee/login">
+          <a href="{{domain}}/employee/login">
             <button type="button" class="btn btn-lg btn-white">LOGIN</button>
           </a>
           {%endifequal%}
