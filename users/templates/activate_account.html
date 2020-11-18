@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Email Verification</title>
+    <style>
+    .card {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: auto;
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 15px;
+        margin-bottom: 10px;
+        background: #001233;
+        color: #fff;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        width: 20%;
+        font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-text">Welcome to Cavaliers HRM System!</h1>
+            <p class="card-text">
+            <strong>Thank you {{ user.first_name }} {{ user.last_name }} for creating an account.Please verify your email address
+            to activate your account.</strong>
+            </p>
+            <a
+                class="verify-button"
+                href=" {{ domain }}{% url 'activate' uidb64=uid token=token %}">
+            <button type="button" class="btn">Activate Account</button>
+            </a>
+        </div>
+        </div>
+    </body>
+</html>

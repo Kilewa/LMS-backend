@@ -13,9 +13,15 @@ import os
 import cloudinary
 from decouple import config
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SENDGRID_API_KEY =config('SENDGRID_API_KEY')
+
+DOMAIN= config('DOMAIN')
+
+UIDOMAIN= config('UIDOMAIN')
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +35,11 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
-AUTH_USER_MODEL = 'authentication.User'
+ALLOWED_HOSTS=['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+AUTH_USER_MODEL = 'users.CustomUser'
 # # Application definition
 
 INSTALLED_APPS = [
@@ -41,17 +51,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Local Apps
-    'authentication',
     'tasks',
     'leave',
-
-
-    'profiles',
-    'departments',
+    'users',
     
     #Third-party Apps
     'rest_framework',
     'cloudinary',
+    'corsheaders',
 ]
 
 cloudinary.config( 
@@ -61,6 +68,8 @@ cloudinary.config(
 )
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,20 +100,27 @@ TEMPLATES = [
 
 
 REST_FRAMEWORK = {
-    
     'DEFAULT_AUTHENTICATION_CLASSES': [
-    'drf_jwt.authentication.JSONWebTokenAuthentication',
-    ]
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
 
 WSGI_APPLICATION = 'lmsproject.wsgi.application'
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -179,6 +195,3 @@ REGISTRATION_OPEN = True
 
 """ LOGIN_REDIRECT_URL = ''
 LOGOUT_REDIRECT_URL = '/' """
-
-# Email configurations using Sendgrid
-SENDGRID_API_KEY = config('SENDGRID_API_KEY')
