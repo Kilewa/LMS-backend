@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     #Third-party Apps
     'rest_framework',
     'cloudinary',
+    'django_filters'
 ]
 
 cloudinary.config( 
@@ -94,7 +95,12 @@ REST_FRAMEWORK = {
     
     'DEFAULT_AUTHENTICATION_CLASSES': [
     'drf_jwt.authentication.JSONWebTokenAuthentication',
-    ]
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASSE': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE':5,
 }
 
 

@@ -3,15 +3,20 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.pagination import PageNumbePagination
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+
 from authentication.models import User
 from authentication.api.send_email import send_mail
-from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from authentication.api.serializers import LoginSerializer
 import jwt
 from django.conf import settings
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from profiles.models import Profile
 from departments.models import Department, Employee
 from .serializers import DepartmentSerializer, EmployeeSerializer
@@ -65,3 +70,12 @@ class EmployeeDeleteView(generics.DestroyAPIView):
     """
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+class EmployeeListView(generics.ListAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+    # authentication_classes = ()
+    # permission_classes = (isAuthenticated,)
+    pagination_class = PageNumberPagination
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ('first_name','department','user__username')
