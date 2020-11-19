@@ -43,6 +43,11 @@
     .home-center{
       top: 30%;
     }
+
+    .btn{
+      border-radius: 40px;
+      width: 10%;
+    }
     
   </style>
 
@@ -59,11 +64,11 @@
           {%if success%}
           {%ifequal user.role 2%}
           <a href="{{domain}}/departmenthead/login">
-            <button type="button" class="btn btn-lg btn-white">LOGIN</button>
+            <button type="button" class="btn  btn-white">LOGIN</button>
           </a>
           {%else%}
           <a href="{{domain}}/employee/login">
-            <button type="button" class="btn btn-lg btn-white">LOGIN</button>
+            <button type="button" class="btn  btn-white">LOGIN</button>
           </a>
           {%endifequal%}
           
