@@ -44,9 +44,11 @@ departments=[('Administration','Adminstration'),
 ('Customer Relations','Customer Relations'),
 ('Quality Control','Quality Control'), ('Purchasing', 'Purchasing')
 ]
+
 class Departmenthead(models.Model):
     user=models.OneToOneField(CustomUser,on_delete=models.CASCADE)
     department= models.CharField(max_length=50,choices=departments,default='Adminstration')
+    
     
     def __str__(self):
         return "{} ({})".format(self.user.first_name,self.department)

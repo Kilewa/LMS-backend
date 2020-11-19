@@ -12,11 +12,6 @@ from sendgrid.helpers.mail import Mail
 
 
 
-
-
-
-
-
 def send_confirmation_email(user):
 
     # locates our email.html in the templates folder
@@ -30,7 +25,7 @@ def send_confirmation_email(user):
         # the email that sends the confirmation email
         from_email='gkilewa1@gmail.com',
         to_emails=[user.email],  # list of email receivers
-        subject='Cavaliers HRM Account activation',  # subject of your email
+        subject='Cavaliers HRM Account Activation',  # subject of your email
         html_content=msg_html)
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)

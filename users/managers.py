@@ -40,5 +40,4 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_('Superuser must have is_superuser=True.'))
         if extra_fields.get('is_verified') is not True:
             raise ValueError(_('Superuser must have is_verified=True.'))    
-   
         return self.create_user(email, password,role, '','',**extra_fields)

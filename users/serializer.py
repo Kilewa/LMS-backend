@@ -19,6 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 # Doctor serializer
 class DeptSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True, many=False)
+
     class Meta:
         model = Departmenthead
         fields = '__all__'
