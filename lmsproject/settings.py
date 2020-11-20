@@ -162,11 +162,11 @@ WSGI_APPLICATION = 'lmsproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'USER': os.environ.get ('DB_USER'),
-        'HOST': os.environ.get('DB_HOST','127.0.0.1'),
-        'PORT': os.environ.get('DB_PORT', 5432),
+        'NAME': config('DB_NAME'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'USER': config ('DB_USER'),
+        'HOST': config('DB_HOST','127.0.0.1'),
+        'PORT': config('DB_PORT', 5432),
     }
 }
 
