@@ -19,7 +19,7 @@ class leave(models.Model):
     comments = models.TextField(default='under review')
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.reasons)
 
 
 
