@@ -36,6 +36,7 @@ if config('MODE')=="dev":
     }
     # production
     else:
+        
     DATABASES = {
         'default': dj_database_url.config(
             default=config('DATABASE_URL')
@@ -60,14 +61,14 @@ UIDOMAIN= config('UIDOMAIN')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS')
 
-ALLOWED_HOSTS=['*']
+
 
 CORS_ORIGIN_ALLOW_ALL = True
 
