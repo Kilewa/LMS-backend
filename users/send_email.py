@@ -35,7 +35,3 @@ def send_confirmation_email(user):
         print(e.message)
         return str(e)
 
-
-
-
-
