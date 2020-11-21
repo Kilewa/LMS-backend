@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
-
+from PIL import Image
+from cloudinary.models import CloudinaryField
 from .managers import CustomUserManager
 
 # Create your models here.
@@ -59,6 +60,7 @@ class Employee(models.Model):
     first_name = models.CharField(max_length=255, blank=False, unique=True)
     last_name = models.CharField(max_length=255, blank=False, unique=True)
     phone_number = models.IntegerField(blank=True, unique=True, null=True)
+    profile_photo = CloudinaryField('image', default='default.jpg')
     employee_number = models.IntegerField(blank=True, unique=True, null=True)
     gender = models.CharField(max_length=100, choices=(("Male", ("Male")),("Female", "Female")))
     designition = models.CharField(max_length=255, blank=True, unique=False)
