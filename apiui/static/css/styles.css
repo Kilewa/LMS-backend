@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+
+body{
+    background-color: #002855;  
+    font-family: 'Concert One', cursive; 
+}
+
+h2{
+    padding-top: 5%;
+    font-size: 40px;
+    color: #002855;
+  }
+
+.bg-img{
+    height: 75vh;
+    background-image: url(../images/LDP.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Concert One', cursive; 
+}
+
+footer{
+    font-family: 'Concert One', cursive; 
+}

@@ -6,7 +6,7 @@ from .api import *
 urlpatterns = [
       path('api/token/obtain/', jwt_views.TokenObtainPairView.as_view(), name='token_create'),
       path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-      path('api/register', RegisterApi.as_view()),
+      path('api/register', RegisterApi.as_view(), name='register'),
       path('api/activate/<uidb64>/<token>',activate_account, name='activate'),
       path('api/login', UserLoginView.as_view(), name='login'),
       path('api/departmenthead', DepartmentheadView.as_view(), name='department_heads'),
