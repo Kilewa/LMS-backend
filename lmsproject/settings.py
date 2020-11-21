@@ -87,11 +87,13 @@ INSTALLED_APPS = [
     'tasks',
     'leave',
     'users',
+    'apiui',
     
     #Third-party Apps
     'rest_framework',
     'cloudinary',
     'corsheaders',
+    "bootstrap4",
 ]
 
 cloudinary.config( 

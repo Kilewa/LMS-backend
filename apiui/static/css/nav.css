@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+
+nav{
+    font-family: 'Concert One', cursive; 
+}
+
+#brand{
+    color: #fff;
+    font-size: 20px;
+}
