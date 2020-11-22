@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'tasks',
     'leave',
     'users',
+    'expenses',
     
     #Third-party Apps
     'rest_framework',

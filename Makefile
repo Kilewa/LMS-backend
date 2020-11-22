@@ -25,7 +25,7 @@ report:
 	coverage html
 
 superuser:
-	./manage.py createsuperuser --username $(name)
+	./manage.py createsuperuser
 
 push:
 	git push -u origin $(branch)
