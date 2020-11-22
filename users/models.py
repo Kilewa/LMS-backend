@@ -71,4 +71,3 @@ class Employee(models.Model):
     postal_address = models.IntegerField(blank=True, null=True)
     def __str__(self):
         return "{} ({}:{})".format(self.user.first_name,self.user.get_role_display(),self.gender)
-
