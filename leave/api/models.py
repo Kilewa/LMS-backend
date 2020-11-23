@@ -10,7 +10,6 @@ class leave(models.Model):
         ("Approved", "Approved"),
         ("Denied", "Denied")
     )
-
     Employee = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()

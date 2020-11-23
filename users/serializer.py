@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id','first_name', 'last_name','role', 'email') 
 
 
-# Doctor serializer
+# manager serializer
 class DeptSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True, many=False)
 
@@ -25,7 +25,7 @@ class DeptSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# Patient serializer
+# employee serializer
 class EmployeeSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True, many=False)
     class Meta:
