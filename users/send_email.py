@@ -23,7 +23,7 @@ def send_confirmation_email(user):
     })
     message = Mail(
         # the email that sends the confirmation email
-        from_email='gkilewa1@gmail.com',
+        from_email='kilewageorge230@gmail.com',
         to_emails=[user.email],  # list of email receivers
         subject='Cavaliers HRM Account Activation',  # subject of your email
         html_content=msg_html)
@@ -32,6 +32,6 @@ def send_confirmation_email(user):
         response = sg.send(message)
         print(response.status_code)
     except Exception as e:
-        print(e.message)
+        print(e)
         return str(e)
 

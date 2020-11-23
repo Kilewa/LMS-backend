@@ -57,8 +57,6 @@ class Departmenthead(models.Model):
 
 class Employee(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255, blank=False, unique=True)
-    last_name = models.CharField(max_length=255, blank=False, unique=True)
     phone_number = models.IntegerField(blank=True, unique=True, null=True)
     profile_photo = CloudinaryField('image', default='default.jpg')
     employee_number = models.IntegerField(blank=True, unique=True, null=True)
