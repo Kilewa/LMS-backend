@@ -5,7 +5,7 @@ from expenses.api.views import (
 
 
 urlpatterns = [
-    path('apply_expense/',apply_leave, name='apply_expense' ),
+    path('apply/',apply_expense, name='apply_expense' ),
     path('expense/applications/',view_all_expenses, name='view_all_expenses' ),
     path('single-expense/application/(\d+)/',view_expense, name='view_expense' ),
     path('approve-expense/(\d+)/',approve_expenses, name='approve_expenses'),

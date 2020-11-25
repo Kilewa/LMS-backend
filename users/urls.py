@@ -13,6 +13,7 @@ urlpatterns = [
       path('api/departmenthead/<int:deptid>',DepartmentheadView.as_view()),
       path('api/employee', EmployeeListView.as_view(), name='employees'),
       path('api/employee/<int:empid>',EmployeeView.as_view()),
+      path('api/upload-image', UploadView.as_view()),
 ]
 
 

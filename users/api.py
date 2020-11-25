@@ -11,6 +11,9 @@ from .token_generator import account_activation_token
 from .serializer import *
 from .models import CustomUser as User,Departmenthead,Employee
 from lmsproject.settings import UIDOMAIN
+from rest_framework.parsers import MultiPartParser, JSONParser
+
+import cloudinary.uploader
 
 #Register API
 class RegisterApi(generics.GenericAPIView):
@@ -157,3 +160,18 @@ class EmployeeView(APIView):
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)  
 
+class UploadView(APIView):
+    parser_classes = (
+        MultiPartParser,
+        JSONParser
+    )
+
+    @staticmethod
+    def post(request):
+        file = request.data.get('picture')
+
+        upload_data = cloudinary.uploader.upload(file)
+        return Response({
+            'status': 'success',
+            'data': upload_data,
+        }, status=201)

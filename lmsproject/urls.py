@@ -26,6 +26,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('tasks/', include('tasks.api.urls')),
     path('leaves/', include('leave.api.urls')),
+    path('expenses/', include('expenses.api.urls')),
 ]
 
 admin.site.site_header = 'Human Resource Administrator'

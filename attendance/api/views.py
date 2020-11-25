@@ -11,7 +11,6 @@ from django.views.generic.edit import CreateView
 
 class Attendancecreate(CreateView):
     model = Attendance
-    form_class = Attendanceform
     success_url = '/dashboard/'
 
     def get_context_data(self,** kwargs):
